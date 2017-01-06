@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--insert necessary styles here-->
+    <!---it's better to insert the script on a separate file and link to the page-->
+    <script type="text/javascript">
+        var target = document.getElementById("all-tabs");
+        var options = {}; //Define options e.g. "option1" : "value1", etc.
+
+        var elem = new Foundation.Tabs($(target), options);
+
+        $('.tabs-title').on("mouseover", function() {
+            //Find the associated panel id.
+            var panelId = $(this).find("a").attr("href").substring(1);
+            var tabContents = document.getElementById(panelId);
+            //Use the "tabs" object to select the associated panel.
+            elem.selectTab($(tabContents));
+            //Show the tab contents.
+            $(tabContents).show();
+        }).on("mouseout", function() {
+            var panelId = $(this).find("a").attr("href").substring(1);
+            $(this).find("a").attr("aria-selected", "false");
+            var tabContents = document.getElementById(panelId);
+            //Hide the tab contents.
+            $(tabContents).hide();
+        });
+    </script>
+    <style>
+        .content {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<ul class="tabs" data-tabs id="all-tabs">
+    <li class="tabs-title"><a href="#panel1">Tab 1</a></li>
+    <li class="tabs-title"><a href="#panel2">Tab 2</a></li>
+    <li class="tabs-title"><a href="#panel3">Tab 3</a></li>
+    <li class="tabs-title"><a href="#panel4">Tab 4</a></li>
+</ul>
+<div class="tabs-content">
+    <div class="content" id="panel1">
+        <div class="text-center">
+            <p>This is the first panel of the basic tab example. You can place all sorts of content here including a grid.</p>
+        </div>
+    </div>
+    <div class="content" id="panel2">
+        <div class="text-center">
+            <p>This is the second panel of the basic tab example. This is the second panel of the basic tab example.</p>
+        </div>
+    </div>
+    <div class="content" id="panel3">
+        <div class="text-center">
+            <p>This is the third panel of the basic tab example. This is the third panel of the basic tab example.</p>
+        </div>
+    </div>
+    <div class="content" id="panel4">
+        <div class="text-center">
+            <p>This is the fourth panel of the basic tab example. This is the fourth panel of the basic tab example.</p>
+        </div>
+    </div>
+</div>
+<!--necessary scripts here-->
+</body>
+</html>
